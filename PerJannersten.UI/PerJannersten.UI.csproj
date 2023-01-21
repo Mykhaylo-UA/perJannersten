@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <Nullable>disable</Nullable>
+        <UseWPF>true</UseWPF>
+        <RootNamespace>PerJannersten.UI</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.58" />
+      <PackageReference Include="MudBlazor" Version="6.1.7" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\PerJannersten.Services\PerJannersten.Services.csproj" />
+      <ProjectReference Include="..\PerJannersten.UiServices\PerJannersten.UiServices.csproj" />
+      <ProjectReference Include="..\PerJannersten.ViewModel\PerJannersten.ViewModel.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="BTC.ini">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+</Project>

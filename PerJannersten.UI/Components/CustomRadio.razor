@@ -1,0 +1,31 @@
+﻿<label class="mud-radio mud-radio-content-placement-end" style="margin-left: -1px;"
+       @onclick="() => OnClick.InvokeAsync(Value)">
+    <span class="mud-button-root mud-icon-button mud-ripple mud-ripple-radio mud-primary-text hover:mud-primary-hover mud-checked">
+        <span class="mud-radio-button">
+            <input tabindex="-1" aria-disabled="false" 
+                   role="radio" 
+                   type="radio" class="mud-radio-input"
+                   value="@Value"
+                   name="@Name">
+            <span class="mud-radio-icons @(Checked ? "mud-checked" : "" )">
+                <svg class="mud-icon-root mud-svg-icon mud-icon-size-small" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                    <!--!--><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path>
+                </svg><!--!-->
+                <svg class="mud-icon-root mud-svg-icon mud-radio-icon-checked mud-icon-size-small" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                    <!--!--><path d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"></path>
+                </svg>
+            </span>
+        </span>
+    </span><span class="mud-radio-content mud-typography mud-typography-body1">@ChildContent</span>
+</label>
+
+@code{
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    
+    [Parameter] public string Name { get; set; }
+    [Parameter] public byte Value { get; set; }
+    [Parameter] public EventCallback<byte> OnClick { get; set; }
+    [Parameter] public bool Checked { get; set; }
+}

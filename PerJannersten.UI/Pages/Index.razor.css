@@ -1,0 +1,23 @@
+﻿::deep .radioColumn .mud-radio-group{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+::deep .centerContent{
+    display: flex;
+    justify-content: center;
+}
+::deep .marginTopField{
+    margin-top: 5px !important;
+}
+::deep .subOption{
+    margin-left: 12px !important;
+}
+::deep .mud-icon-button{
+    padding: 0 !important;
+    margin-right: 8px !important;
+}
+::deep .smallHeight .mud-input>input.mud-input-root-outlined.mud-input-root-margin-dense {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
