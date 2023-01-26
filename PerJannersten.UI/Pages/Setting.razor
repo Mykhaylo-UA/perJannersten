@@ -1,23 +1,23 @@
 ﻿@page "/"
-@using PerJannersten.UI.Components
+@using PerJannersten.UI.Components;
 
 <div>
 <MudGrid Spacing="1">
 <MudItem sm="3" Style="height: 100%;">
     <fieldset >
-        <legend>Ask for</legend>
+        <legend>@(Localizer["ask_for"])</legend>
         <MudStack Spacing="0">
-            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="ID"
+            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["ask_for_id"])"
                          @bind-Checked="@_settingViewModel.AskFor.Id"/>
-            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="Deal"
+            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["ask_for_deal"])"
                          @bind-Checked="@_settingViewModel.AskFor.Deal"/>
-            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="Bidding"
+            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["ask_for_bidding"])"
                          @bind-Checked="@_settingViewModel.AskFor.Bidding"/>
-            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="Lead"
+            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["ask_for_lead"])"
                          @bind-Checked="@_settingViewModel.AskFor.Lead"/>
-            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="Reconfirm"
+            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["ask_for_reconfirm"])"
                          @bind-Checked="@_settingViewModel.AskFor.Reconfirm"/>
-            <MudCheckBox Color="DefaultColorSecondary" Size="DefaultSize" Label="PIN" Class="subOption"
+            <MudCheckBox Color="DefaultColorSecondary" Size="DefaultSize" Label="@(Localizer["ask_for_pin"])" Class="subOption"
                          @bind-Checked="@_settingViewModel.AskFor.Pin"
                          Disabled="@(!_settingViewModel.AskFor.Reconfirm)"/>
         </MudStack>
@@ -25,19 +25,20 @@
 </MudItem>
 <MudItem sm="6" Style="height: 100%;">
     <fieldset >
-        <legend>Game & scoring type</legend>
+        <legend>@(Localizer["game_scoring_type"])</legend>
         <MudGrid>
             <MudItem sm="6">
                 <fieldset>
-                    <MudRadioGroup T="byte?" Class="radioColumn"
-                                   SelectedOption="@(_settingViewModel.GameAndScoringType.ScoringType != 4 ?
-                                                       _settingViewModel.GameAndScoringType.GameType : null)"
+                    <MudRadioGroup T="byte" Class="radioColumn"
+                                   SelectedOption="@(_settingViewModel.GameAndScoringType.ScoringType != 4 ? _settingViewModel.GameAndScoringType.GameType : (byte)0)"
                                    SelectedOptionChanged="ChangeGameType">
-                        <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@((byte?) 1)">Pairs</MudRadio>
-                        <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@((byte?) 2)">Individual</MudRadio>
+                        <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@((byte) 1)">@(Localizer["game_scoring_type_pairs"])</MudRadio>
+                        <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@((byte) 2)">@(Localizer["game_scoring_type_individual"])</MudRadio>
                     </MudRadioGroup>
                     <CustomRadio OnClick="SelectTeamsScoringType"
-                                 Checked="@(_settingViewModel.GameAndScoringType?.ScoringType == 4)">Teams</CustomRadio>
+                                 Checked="@(_settingViewModel.GameAndScoringType?.ScoringType == 4)">
+                        @(Localizer["game_scoring_type_teams"])
+                    </CustomRadio>
                 </fieldset>
             </MudItem>
             <MudItem sm="6">
@@ -50,15 +51,15 @@
                                    @bind-SelectedOption="@_settingViewModel.GameAndScoringType.ScoringType">
                         <MudRadio Color="DefaultColorSecondary" Size="DefaultSize" Option="@((byte) 1)"
                                   Disabled="disabledScoringType">
-                            MP
+                            @(Localizer["game_scoring_type_mp"])
                         </MudRadio>
                         <MudRadio Color="DefaultColorSecondary" Size="DefaultSize" Option="@((byte) 2)"
                                   Disabled="disabledScoringType">
-                            Buttler
+                            @(Localizer["game_scoring_type_buttler"])
                         </MudRadio>
                         <MudRadio Color="DefaultColorSecondary" Size="DefaultSize" Option="@((byte) 3)"
                                   Disabled="disabledScoringType">
-                            Cross IMPs
+                            @(Localizer["game_scoring_type_cross"])
                         </MudRadio>
                     </MudRadioGroup>
                 </fieldset>
@@ -67,31 +68,31 @@
         <div style="display: flex; justify-content: center; margin: 12px 0;">
             <MudCheckBox Color="DefaultColor" Size="DefaultSize"
                          @bind-Checked="@_settingViewModel.GameAndScoringType.ScoreAcrossPair"
-                         T="bool" Label="Score across the field"
+                         T="bool" Label="@(Localizer["score_across_the_field"])"
                          Style=""/>
         </div>
     </fieldset>
 </MudItem>
 <MudItem sm="3" Style="height: 100%;">
     <fieldset >
-        <legend>Tricks & points</legend>
+        <legend>@(Localizer["tricks_points"])</legend>
         <MudStack Spacing="0">
-            <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="N scores"
+            <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="@(Localizer["tricks_points_n_scores"])"
                          @bind-Checked="_settingViewModel.TrickAndPoint.RotateDirections"/>
             <MudRadioGroup T="byte"
                            Class="radioColumn"
                            @bind-SelectedOption="@_settingViewModel.TrickAndPoint.InputMethod">
                 <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@((byte) 1)">
-                    Tricks taken
+                    @(Localizer["tricks_points_tricks_taken"])
                 </MudRadio>
                 <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@((byte) 0)">
-                    - / = / + (EUR)
+                    @(Localizer["tricks_points_eur"])
                 </MudRadio>
                 <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@((byte) 2)">
-                    Made / down (US)
+                    @(Localizer["tricks_points_us"])
                 </MudRadio>
             </MudRadioGroup>
-            <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="Declarer's points"
+            <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="@(Localizer["tricks_points_declarer_points"])"
                          @bind-Checked="_settingViewModel.TrickAndPoint.PointToDeclarer"/>
         </MudStack>
     </fieldset>
@@ -100,43 +101,42 @@
     <MudGrid Spacing="0">
         <MudItem sm="12">
             <fieldset >
-                <legend>Timing</legend>
+                <legend>@(Localizer["timing"])</legend>
                 <MudStack Spacing="0">
-                    <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="Use timer"
+                    <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="@(Localizer["timing_use_timer"])"
                                  @bind-Checked="_settingViewModel.Timing.UseTimer"/>
-                    <MudNumericField Class="marginTopField smallHeight" Label="Min for reg." Variant="Variant.Outlined" Margin="Margin.Dense"
+                    <MudNumericField Class="marginTopField smallHeight" Label="@(Localizer["timing_min"])" Variant="Variant.Outlined" Margin="Margin.Dense"
                                      @bind-Value="_settingViewModel.Timing.RegistrationTime"
                                      Disabled="@(!_settingViewModel.Timing.UseTimer)"/>
-                    <MudNumericField Class="marginTopField smallHeight" Label="Min/board" Variant="Variant.Outlined" Margin="Margin.Dense"
+                    <MudNumericField Class="marginTopField smallHeight" Label="@(Localizer["timing_min_board"])" Variant="Variant.Outlined" Margin="Margin.Dense"
                                      @bind-Value="_settingViewModel.Timing.PlayTime"
                                      Disabled="@(!_settingViewModel.Timing.UseTimer)"/>
-                    <MudNumericField Class="marginTopField smallHeight" Label="Min/move" Variant="Variant.Outlined" Margin="Margin.Dense"
-                                  @bind-Value="_settingViewModel.Timing.ChangeTime"
-                                  Disabled="@(!_settingViewModel.Timing.UseTimer)"/>
+                    <MudNumericField Class="marginTopField smallHeight" Label="@(Localizer["timing_min_move"])" Variant="Variant.Outlined" Margin="Margin.Dense"
+                                     @bind-Value="_settingViewModel.Timing.ChangeTime"
+                                     Disabled="@(!_settingViewModel.Timing.UseTimer)"/>
                 </MudStack>
             </fieldset>
         </MudItem>
         <MudItem sm="12">
             <fieldset >
-                <legend>TD</legend>
+                <legend>@(Localizer["td"])</legend>
                 <MudGrid Spacing="1">
                     <MudItem sm="12" Style="padding: 1px 4px;">
                         <fieldset style="padding: 0 10px;">
-                            <legend>PIN</legend>
+                            <legend>@(Localizer["td_pin"])</legend>
                             <MudStack Style="flex-direction: row !important; align-items: center !important;" Spacing="0">
                                 <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool"
                                              @bind-Checked="_settingViewModel.TD.Checked"/>
-                                <MudNumericField Class="smallHeight"  Variant="Variant.Outlined" Margin="Margin.Dense"
-                                             @bind-Value="_settingViewModel.TD.Pin"
-                                             Disabled="@(!_settingViewModel.TD.Checked)"
-                                             />
+                                <MudNumericField Class="smallHeight" Variant="Variant.Outlined" Margin="Margin.Dense"
+                                                 @bind-Value="_settingViewModel.TD.Pin"
+                                                 Disabled="@(!_settingViewModel.TD.Checked)"/>
                             </MudStack>
                         </fieldset>
                     </MudItem>
                     <MudItem sm="12" Style="padding: 1px 4px;">
                         <fieldset style="padding: 0 10px;">
-                            <legend>Calls by BT</legend>
-                            <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="On / off"
+                            <legend>@(Localizer["td_calls_by_bt"])</legend>
+                            <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="@(Localizer["td_calls_by_bt_on_off"])"
                                          @bind-Checked="_settingViewModel.TD.CallByBt"/>
                         </fieldset>
                     </MudItem>
@@ -148,47 +148,48 @@
 </MudItem>
 <MudItem sm="6" Style="height: 100%;">
     <fieldset >
-        <legend>Feedback</legend>
+        <legend>@(Localizer["feedback"])</legend>
         <MudGrid>
             <MudItem sm="6">
                 <fieldset>
-                    <legend>Each deal</legend>
+                    <legend>@(Localizer["feedback_each_deal"])</legend>
                     <MudGrid>
                         <MudItem sm="12">
                             <fieldset>
                                 <MudCheckBox Color="DefaultColor" @bind-Checked="_settingViewModel.EachDeal.ShowScore"
-                                             Size="DefaultSize" T="bool" Label="Show score"/>
+                                             Size="DefaultSize" T="bool" Label="@(Localizer["feedback_each_deal_show_score"])"/>
                                 <MudRadioGroup T="bool" Class="radioColumn subOption"
                                                @bind-SelectedOption="_settingViewModel.EachDeal.Automatic">
                                     <MudRadio Color="DefaultColorSecondary" Size="DefaultSize" Option="@(true)"
                                               Disabled="@(!_settingViewModel.EachDeal.ShowScore)">
-                                        Automatic
+                                        @(Localizer["feedback_each_deal_automatic"])
                                     </MudRadio>
                                     <MudRadio Color="DefaultColorSecondary" Size="DefaultSize" Option="@(false)"
                                               Disabled="@(!_settingViewModel.EachDeal.ShowScore)">
-                                        Traveller
+                                        @(Localizer["feedback_each_deal_traveller"])
                                     </MudRadio>
                                 </MudRadioGroup>
                             </fieldset>
                         </MudItem>
                         <MudItem sm="12">
                             <fieldset>
-                                <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" 
+                                <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool"
                                              @bind-Checked="_settingViewModel.EachDeal.ShowDeal"
-                                             Label="Show deal"/>
+                                             Label="@(Localizer["feedback_each_deal_show_deal"])"/>
                                 <fieldset>
-                                    <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="Makable as"
+                                    <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool"
+                                                 Label="@(Localizer["feedback_each_deal_makable"])"
                                                  @bind-Checked="_settingViewModel.EachDeal.MakableAs"
                                                  Disabled="@(!_settingViewModel.EachDeal.ShowDeal)"/>
                                     <MudRadioGroup T="bool" Class="radioColumn subOption"
                                                    @bind-SelectedOption="_settingViewModel.EachDeal.Contracts">
                                         <MudRadio Color="DefaultColorSecondary" Size="DefaultSize" Option="@(true)"
                                                   Disabled="@(!_settingViewModel.EachDeal.MakableAs || !_settingViewModel.EachDeal.ShowDeal)">
-                                            Contracts
+                                            @(Localizer["feedback_each_deal_contracts"])
                                         </MudRadio>
                                         <MudRadio Color="DefaultColorSecondary" Size="DefaultSize" Option="@(false)"
                                                   Disabled="@(!_settingViewModel.EachDeal.MakableAs || !_settingViewModel.EachDeal.ShowDeal)">
-                                            Tricks
+                                            @(Localizer["feedback_each_deal_tricks"])
                                         </MudRadio>
                                     </MudRadioGroup>
                                 </fieldset>
@@ -199,30 +200,30 @@
             </MudItem>
             <MudItem sm="6">
                 <fieldset>
-                    <legend>End of round</legend>
+                    <legend>@(Localizer["end_of_round"])</legend>
                     <MudGrid>
                         <MudItem sm="12">
                             <fieldset>
-                                <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="Show summary"
+                                <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="@(Localizer["end_of_round_show_summary"])"
                                              @bind-Checked="_settingViewModel.EndOfRound.RoundSummary"/>
-                                <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="Permit changes"
+                                <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="@(Localizer["end_of_round_permit"])"
                                              @bind-Checked="_settingViewModel.EndOfRound.PermitResultChange"/>
                             </fieldset>
                         </MudItem>
                         <MudItem sm="12">
                             <fieldset>
-                                <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="Show ranking"
+                                <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="@(Localizer["end_of_round_show_ranking"])"
                                              @bind-Checked="_settingViewModel.EndOfRound.ShowRanking"/>
                                 <MudCheckBox Color="DefaultColorSecondary" Size="DefaultSize" T="bool"
-                                             Label="Top 10 only" Class="subOption"
+                                             Label="@(Localizer["end_of_round_top10"])" Class="subOption"
                                              @bind-Checked="_settingViewModel.EndOfRound.Top10"
                                              Disabled="@(!_settingViewModel.EndOfRound.ShowRanking)"/>
                             </fieldset>
                         </MudItem>
                         <MudItem>
-                            <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="Play next info"
+                            <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="@(Localizer["end_of_round_play_next"])"
                                          @bind-Checked="_settingViewModel.EndOfRound.ShowGoto"/>
-                            <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="Recap at end"
+                            <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="@(Localizer["end_of_round_recap_end"])"
                                          @bind-Checked="_settingViewModel.EndOfRound.RecapResult"/>
                         </MudItem>
                     </MudGrid>
@@ -234,19 +235,29 @@
 <MudItem sm="3" Style="height: 100%;">
     <MudGrid Style="margin-top: 10px;">
         <MudItem sm="12">
-            <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="Show at start"
+            <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="@(Localizer["show_at_start"])"
                          @bind-Checked="_settingViewModel.Other.ShowAtStart"/>
         </MudItem>
 
-        <MudItem sm="12">
-            <fieldset >
-                <legend>Settings from</legend>
-                <MudRadioGroup T="bool" Class="radioColumn" 
-                               @bind-SelectedOption="_settingViewModel.Other.BTDefault">
-                    <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@(false)">Scoring software</MudRadio>
-                    <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@(true)">Default</MudRadio>
-                </MudRadioGroup>
-            </fieldset>
+        <MudItem sm="12" Class="centerContent">
+            @if (SettingWindow.DefaultSetting)
+            {
+                <fieldset >
+                    <legend>@(Localizer["settings_from"])</legend>
+                    <MudRadioGroup T="bool" Class="radioColumn"
+                                   @bind-SelectedOption="_settingViewModel.Other.BTDefault">
+                        <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@(false)">@(Localizer["settings_from_scoring"])</MudRadio>
+                        <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@(true)">@(Localizer["settings_from_default"])</MudRadio>
+                    </MudRadioGroup>
+                </fieldset>   
+            }
+            else
+            {
+                <MudButton Color="Color.Secondary" Size="Size.Large" Variant="Variant.Filled"
+                           OnClick="MoreSettings">
+                    @(Localizer["more_settings"])
+                </MudButton>
+            }
         </MudItem>
         <MudItem sm="12" Class="centerContent">
             <MudIconButton Color="Color.Warning" Icon="@Icons.Material.Filled.QuestionMark" Variant="Variant.Filled"
@@ -254,7 +265,9 @@
         </MudItem>
         <MudItem sm="12" Class="centerContent">
             <MudButton Color="Color.Primary" Size="Size.Large" Variant="Variant.Filled"
-                       OnClick="SaveSettings">OK</MudButton>
+                       OnClick="SaveSettings">
+                @(Localizer["ok"])
+            </MudButton>
         </MudItem>
     </MudGrid>
 </MudItem>

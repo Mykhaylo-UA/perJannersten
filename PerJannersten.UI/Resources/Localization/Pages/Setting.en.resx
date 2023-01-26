@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="title" xml:space="preserve">
+        <value>Game Settings</value>
+    </data>
+    <data name="title_default" xml:space="preserve">
+        <value>Default Game Settings</value>
+    </data>
+    <data name="ask_for" xml:space="preserve">
+        <value>Ask for</value>
+    </data>
+    <data name="ask_for_id" xml:space="preserve">
+        <value>ID</value>
+    </data>
+    <data name="ask_for_deal" xml:space="preserve">
+        <value>Deal</value>
+    </data>
+    <data name="ask_for_bidding" xml:space="preserve">
+        <value>Bidding</value>
+    </data>
+    <data name="ask_for_lead" xml:space="preserve">
+        <value>Lead</value>
+    </data>
+    <data name="ask_for_reconfirm" xml:space="preserve">
+        <value>Reconfirm</value>
+    </data>
+    <data name="ask_for_pin" xml:space="preserve">
+        <value>PIN</value>
+    </data>
+    <data name="game_scoring_type" xml:space="preserve">
+        <value>Game &amp; scoring type</value>
+    </data>
+    <data name="game_scoring_type_pairs" xml:space="preserve">
+        <value>Pairs</value>
+    </data>
+    <data name="game_scoring_type_individual" xml:space="preserve">
+        <value>Individual</value>
+    </data>
+    <data name="game_scoring_type_teams" xml:space="preserve">
+        <value>Teams</value>
+    </data>
+    <data name="game_scoring_type_mp" xml:space="preserve">
+        <value>MP</value>
+    </data>
+    <data name="game_scoring_type_buttler" xml:space="preserve">
+        <value>Buttler</value>
+    </data>
+    <data name="game_scoring_type_cross" xml:space="preserve">
+        <value>Cross IMPs</value>
+    </data>
+    <data name="score_across_the_field" xml:space="preserve">
+        <value>Score across the field</value>
+    </data>
+    <data name="tricks_points" xml:space="preserve">
+        <value>Tricks &amp; points</value>
+    </data>
+    <data name="tricks_points_n_scores" xml:space="preserve">
+        <value>N scores</value>
+    </data>
+    <data name="tricks_points_tricks_taken" xml:space="preserve">
+        <value>Tricks taken</value>
+    </data>
+    <data name="tricks_points_eur" xml:space="preserve">
+        <value>- / = / + (EUR)</value>
+    </data>
+    <data name="tricks_points_us" xml:space="preserve">
+        <value>Made / down (US)</value>
+    </data>
+    <data name="tricks_points_declarer_points" xml:space="preserve">
+        <value>Declarer's points</value>
+    </data>
+    <data name="timing" xml:space="preserve">
+        <value>Timing</value>
+    </data>
+    <data name="timing_use_timer" xml:space="preserve">
+        <value>Use timer</value>
+    </data>
+    <data name="timing_min" xml:space="preserve">
+        <value>Min for reg.</value>
+    </data>
+    <data name="timing_min_board" xml:space="preserve">
+        <value>Min/board</value>
+    </data>
+    <data name="timing_min_move" xml:space="preserve">
+        <value>Min/move</value>
+    </data>
+    <data name="td" xml:space="preserve">
+        <value>TD</value>
+    </data>
+    <data name="td_pin" xml:space="preserve">
+        <value>PIN</value>
+    </data>
+    <data name="td_calls_by_bt" xml:space="preserve">
+        <value>Calls by BT</value>
+    </data>
+    <data name="td_calls_by_bt_on_off" xml:space="preserve">
+        <value>On / off</value>
+    </data>
+    <data name="feedback" xml:space="preserve">
+        <value>Feedback</value>
+    </data>
+    <data name="feedback_each_deal" xml:space="preserve">
+        <value>Each deal</value>
+    </data>
+    <data name="feedback_each_deal_show_score" xml:space="preserve">
+        <value>Show score</value>
+    </data>
+    <data name="feedback_each_deal_automatic" xml:space="preserve">
+        <value>Automatic</value>
+    </data>
+    <data name="feedback_each_deal_traveller" xml:space="preserve">
+        <value>Traveller</value>
+    </data>
+    <data name="feedback_each_deal_show_deal" xml:space="preserve">
+        <value>Show deal</value>
+    </data>
+    <data name="feedback_each_deal_makable" xml:space="preserve">
+        <value>Makable as</value>
+    </data>
+    <data name="feedback_each_deal_contracts" xml:space="preserve">
+        <value>Contracts</value>
+    </data>
+    <data name="feedback_each_deal_tricks" xml:space="preserve">
+        <value>Tricks</value>
+    </data>
+    <data name="end_of_round" xml:space="preserve">
+        <value>End of round</value>
+    </data>
+    <data name="end_of_round_show_summary" xml:space="preserve">
+        <value>Show summary</value>
+    </data>
+    <data name="end_of_round_permit" xml:space="preserve">
+        <value>Permit changes</value>
+    </data>
+    <data name="end_of_round_show_ranking" xml:space="preserve">
+        <value>Show ranking</value>
+    </data>
+    <data name="end_of_round_top10" xml:space="preserve">
+        <value>Top 10 only</value>
+    </data>
+    <data name="end_of_round_play_next" xml:space="preserve">
+        <value>Play next info</value>
+    </data>
+    <data name="end_of_round_recap_end" xml:space="preserve">
+        <value>Recap at end</value>
+    </data>
+    <data name="show_at_start" xml:space="preserve">
+        <value>Show at start</value>
+    </data>
+    <data name="settings_from" xml:space="preserve">
+        <value>Settings from</value>
+    </data>
+    <data name="settings_from_scoring" xml:space="preserve">
+        <value>Scoring software</value>
+    </data>
+    <data name="settings_from_default" xml:space="preserve">
+        <value>Default</value>
+    </data>
+    <data name="ok" xml:space="preserve">
+        <value>OK</value>
+    </data>
+    <data name="more_settings" xml:space="preserve">
+        <value>More settings</value>
+    </data>
+</root>

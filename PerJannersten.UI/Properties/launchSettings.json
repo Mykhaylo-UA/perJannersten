@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PerJannersten.UI": {
+      "commandName": "Project",
+      "jsWebView2Debugging": true
+    }
+  }
+}

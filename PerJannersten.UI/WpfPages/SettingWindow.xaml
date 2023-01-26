@@ -1,0 +1,19 @@
+﻿<Window x:Class="PerJannersten.UI.WpfPages.SettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:PerJannersten.UI.WpfPages"
+        xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation/blazor"
+        xmlns:ui="clr-namespace:PerJannersten.UI"
+        mc:Ignorable="d"
+        Title="SettingWindow" Height="600" Width="900"
+        MinWidth="900">
+    <Grid>
+        <wpf:BlazorWebView x:Name="BlazorWebView" HostPage="wwwroot\index.html" Services="{DynamicResource services}">
+            <wpf:BlazorWebView.RootComponents>
+                <wpf:RootComponent Selector="#app" ComponentType="{x:Type ui:Main}" />
+            </wpf:BlazorWebView.RootComponents>
+        </wpf:BlazorWebView>
+    </Grid>
+</Window>

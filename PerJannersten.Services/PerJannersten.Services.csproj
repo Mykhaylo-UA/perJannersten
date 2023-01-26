@@ -8,6 +8,12 @@
 
     <ItemGroup>
       <PackageReference Include="ini-parser" Version="2.5.2" />
+      <PackageReference Include="System.Data.OleDb" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\PerJannersten.Services.Data\PerJannersten.Services.Data.csproj" />
+      <ProjectReference Include="..\PerJannersten.ViewModel\PerJannersten.ViewModel.csproj" />
     </ItemGroup>
 
 </Project>

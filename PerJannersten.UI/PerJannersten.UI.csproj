@@ -6,11 +6,27 @@
         <Nullable>disable</Nullable>
         <UseWPF>true</UseWPF>
         <RootNamespace>PerJannersten.UI</RootNamespace>
+        <Platforms>AnyCPU;x86</Platforms>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <Prefer32bit>true</Prefer32bit>
+      <DefineConstants>TRACE /f:C:\BOS\\Events\BWS_test\DATA\bws_test.bws</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <Prefer32bit>true</Prefer32bit>
+      <DefineConstants>TRACE /f:C:\BOS\\Events\BWS_test\DATA\bws_test.bws</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup>
+        <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+    </PropertyGroup>
     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.58" />
+      <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.2" />
       <PackageReference Include="MudBlazor" Version="6.1.7" />
+      <PackageReference Include="System.Data.OleDb" Version="7.0.0" />
+      <PackageReference Include="System.Globalization" Version="4.3.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -22,5 +38,21 @@
         <Content Include="BTC.ini">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Resources\Localization" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Update="Resources\Localization\Pages\Setting.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Setting.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Update="Resources\Localization\Pages\Setting.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Setting.en.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 </Project>
