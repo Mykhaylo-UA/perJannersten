@@ -27,24 +27,19 @@ public partial class Setting : ComponentBase
     const Color DefaultColorSecondary = Color.Secondary;
     
     string _path;
+    bool _btDefault;
 
     protected override async Task OnInitializedAsync()
     {
         SettingWindow = Application.Current.Windows.OfType<SettingWindow>().Last();
+        _settingViewModel = SettingWindow.SettingViewModel;
+        _btDefault = _settingViewModel.Other.BTDefault;
         SettingWindow.Title = SettingWindow.DefaultSetting ? Localizer["title_default"] : Localizer["title"];
         
         _path = Path.Combine(GlobalState.Path, GlobalState.DefaultSettingFileName);
 
-        await using Stream fileStream = new FileStream(_path, FileMode.Open);
-        using StreamReader reader = new(fileStream);
-        string content = await reader.ReadToEndAsync();
-
         try
         {
-            _settingViewModel = SettingWindow.DefaultSetting ? 
-                SettingService.GetDefaultSetting(content) : 
-                SettingService.GetSetting(GlobalState.BwsPath, content);
-            
             _prevScoringType = (byte) (_settingViewModel.GameAndScoringType.ScoringType == 4
                 ? 1
                 : _settingViewModel.GameAndScoringType.ScoringType);
@@ -52,7 +47,6 @@ public partial class Setting : ComponentBase
         }
         catch (Exception e)
         {
-            _settingViewModel = new();
             MessageBox.Show(e.Message);
         }
     }

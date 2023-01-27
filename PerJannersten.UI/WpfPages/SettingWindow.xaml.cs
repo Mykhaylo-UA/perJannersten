@@ -1,14 +1,11 @@
-﻿using System.IO;
-using System.Windows;
-using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Localization;
-using Microsoft.Win32;
-using PerJannersten.UI.Pages;
+﻿using System.Windows;
+using PerJannersten.ViewModel;
 
 namespace PerJannersten.UI.WpfPages;
 
 public partial class SettingWindow : Window
 {
+    public SettingViewModel SettingViewModel { get; set; } = new();
     public bool DefaultSetting { get; set; }
     public SettingWindow()
     {

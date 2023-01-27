@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -30,6 +29,7 @@ public partial class App : Application
         serviceCollection.AddBlazorWebViewDeveloperTools();
         serviceCollection.AddMudServices();
         serviceCollection.AddSingleton<GlobalState>();
+        serviceCollection.AddSingleton<MainWindow>();
         serviceCollection.AddLocalization(o => o.ResourcesPath = "Resources\\Localization");
         _serviceProvider = serviceCollection.BuildServiceProvider();
         Resources.Add("services", _serviceProvider);
@@ -57,18 +57,18 @@ public partial class App : Application
             globalState.BwsPath = path;
         }
         
-        MainWindow mainWindow = new();
+        MainWindow mainWindow = _serviceProvider.GetService<MainWindow>();
         mainWindow.Show();
         
-        SettingWindow settingWindow = new()
-        {
-            Owner = mainWindow
-        };
         IBwsParser bwsParser = _serviceProvider.GetService<IBwsParser>();
         SettingViewModel setting = bwsParser.Parse<SettingViewModel>(globalState.BwsPath);
-        settingWindow.DefaultSetting = setting.Other.BTDefault;
         if (setting.Other.ShowAtStart)
         {
+            SettingWindow settingWindow = new()
+            {
+                Owner = mainWindow,
+                SettingViewModel = setting
+            };
             settingWindow.Show();   
         }
     }

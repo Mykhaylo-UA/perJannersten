@@ -49,6 +49,9 @@ public class BwsParser: IBwsParser
                     internalReader.Read();
                     ParseValueOrDefault(internalReader, bwsColumnAttribute.Table);
                     internalReader.Close();
+                    internalReader.Dispose();
+                    internalConnection.Close();
+                    internalConnection.Dispose();
                 }
                 else
                 {

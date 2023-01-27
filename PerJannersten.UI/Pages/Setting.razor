@@ -240,7 +240,7 @@
         </MudItem>
 
         <MudItem sm="12" Class="centerContent">
-            @if (SettingWindow.DefaultSetting)
+            @if (_btDefault == false || SettingWindow.DefaultSetting)
             {
                 <fieldset >
                     <legend>@(Localizer["settings_from"])</legend>

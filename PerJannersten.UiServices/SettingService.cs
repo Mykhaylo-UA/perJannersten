@@ -53,6 +53,7 @@ public class SettingService: ISettingService
             command.ExecuteNonQuery();
         }
         connection.Close();
+        connection.Dispose();
     }
 
     public void SaveDefaultSetting(SettingViewModel settingViewModel, string path)
