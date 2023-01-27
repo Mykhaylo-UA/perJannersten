@@ -60,8 +60,17 @@ public partial class App : Application
         MainWindow mainWindow = _serviceProvider.GetService<MainWindow>();
         mainWindow.Show();
         
-        IBwsParser bwsParser = _serviceProvider.GetService<IBwsParser>();
-        SettingViewModel setting = bwsParser.Parse<SettingViewModel>(globalState.BwsPath);
+        ISettingService settingService = _serviceProvider.GetService<ISettingService>();
+        string pathIni = Path.Combine(globalState.Path, globalState.DefaultSettingFileName);
+        using Stream fileStream = new FileStream(pathIni, FileMode.Open);
+        using StreamReader reader = new(fileStream);
+        string content = reader.ReadToEnd();
+        reader.Close();
+        reader.Dispose();
+        fileStream.Close();
+        fileStream.Dispose();
+        
+        SettingViewModel setting = settingService.GetSetting(globalState.BwsPath, content);
         if (setting.Other.ShowAtStart)
         {
             SettingWindow settingWindow = new()
