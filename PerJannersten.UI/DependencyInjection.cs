@@ -16,9 +16,15 @@ public static class DependencyInjection
     {
         ServiceCollection serviceCollection = new();
         serviceCollection.AddWpfBlazorWebView();
+        
+        // Services
         serviceCollection.AddSingleton<IIniService, IniService>();
         serviceCollection.AddSingleton<IBwsService, BwsService>();
+        
+        // UI Services
         serviceCollection.AddSingleton<ISettingService, SettingService>();
+        serviceCollection.AddSingleton<IAdditionalSettingService, AdditionalSettingService>();
+        
         serviceCollection.AddBlazorWebViewDeveloperTools();
         serviceCollection.AddMudServices();
         serviceCollection.AddSingleton<GlobalState>();

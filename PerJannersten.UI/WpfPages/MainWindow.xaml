@@ -9,7 +9,9 @@
     <Menu Height="25" VerticalAlignment="Top">
         <MenuItem Header="Settings">
             <MenuItem Header="Current Game Settings" Click="OpenCurrentSettings"></MenuItem>
+            <MenuItem Header="Current Additional Game Settings" Click="OpenAdditionalCurrentSettings"></MenuItem>
             <MenuItem Header="Default Game Settings" Click="OpenDefaultSettings"></MenuItem>
+            <MenuItem Header="Default Additional Game Settings" Click="OpenAdditionalDefaultSettings"></MenuItem>
         </MenuItem>
     </Menu>
 </Window>
