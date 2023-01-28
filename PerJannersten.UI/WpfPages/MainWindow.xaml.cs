@@ -18,36 +18,25 @@ public partial class MainWindow : Window
 
     void OpenCurrentSettings(object sender, RoutedEventArgs e)
     {
+        string path = Path.Combine(_globalState.Path, _globalState.DefaultSettingFileName);
         SettingWindow window = new()
         {
             DefaultSetting = false,
             Owner = this,
-            SettingViewModel = _settingService.GetSetting(_globalState.BwsPath, GetIni())
+            SettingViewModel = _settingService.GetSetting(_globalState.BwsPath, path)
         };
         window.ShowDialog();
         
     }
     void OpenDefaultSettings(object sender, RoutedEventArgs e)
     {
+        string path = Path.Combine(_globalState.Path, _globalState.DefaultSettingFileName);
         SettingWindow window = new()
         {
             DefaultSetting = true,
             Owner = this,
-            SettingViewModel = _settingService.GetDefaultSetting(GetIni())
+            SettingViewModel = _settingService.GetDefaultSetting(path)
         };
         window.ShowDialog();
-    }
-
-    string GetIni()
-    {
-        string path = Path.Combine(_globalState.Path, _globalState.DefaultSettingFileName);
-        using Stream fileStream = new FileStream(path, FileMode.Open);
-        using StreamReader reader = new(fileStream);
-        string content = reader.ReadToEnd();
-        reader.Close();
-        reader.Dispose();
-        fileStream.Close();
-        fileStream.Dispose();
-        return content;
     }
 }

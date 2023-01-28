@@ -1,12 +1,13 @@
 ﻿using System.Data;
 using System.Data.OleDb;
 using System.Reflection;
+using PerJannersten.Services.Data.Abstraction;
 using PerJannersten.Services.Data.Attributes;
 using PerJannersten.Services.Interfaces;
 
 namespace PerJannersten.Services;
 
-public class BwsParser: IBwsParser
+public class BwsService: IBwsService
 {
     public T Parse<T>(string path, object defaultObject = null) where T: new()
     {
@@ -98,6 +99,22 @@ public class BwsParser: IBwsParser
         return obj;
     }
 
+    public void Save(IBws bwsViewModel, string path)
+    {
+        path = $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Persist Security Info=True";
+        Dictionary<string, List<string>> data = bwsViewModel.GetUpdateSqlString();
+        using OleDbConnection connection = new (path);
+        connection.Open();
+        foreach (KeyValuePair<string,List<string>> pair in data)
+        {
+            string query = $"UPDATE [{pair.Key}] SET {string.Join(", ", pair.Value)}";
+            OleDbCommand command = new (query, connection);
+            command.ExecuteNonQuery();
+        }
+        connection.Close();
+        connection.Dispose();
+    }
+    
     string GetSqlType(object value)
     {
         if (value is bool) return "BIT";

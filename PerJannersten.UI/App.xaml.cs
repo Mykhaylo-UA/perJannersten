@@ -4,11 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
-using MudBlazor.Services;
-using PerJannersten.Services;
-using PerJannersten.Services.Interfaces;
 using PerJannersten.UI.WpfPages;
-using PerJannersten.UiServices;
 using PerJannersten.UiServices.Interfaces;
 using PerJannersten.ViewModel;
 
@@ -16,25 +12,15 @@ namespace PerJannersten.UI;
 
 public partial class App : Application
 {
-    readonly ServiceProvider _serviceProvider;
+    readonly IServiceProvider _serviceProvider;
 
     public App()
     {
-        ServiceCollection serviceCollection = new();
-        serviceCollection.AddWpfBlazorWebView();
-        serviceCollection.AddSingleton<IIniService, IniService>();
-        serviceCollection.AddSingleton<ISettingService, SettingService>();
-        serviceCollection.AddSingleton<IIniParser, Services.IniParser>();
-        serviceCollection.AddSingleton<IBwsParser, BwsParser>();
-        serviceCollection.AddBlazorWebViewDeveloperTools();
-        serviceCollection.AddMudServices();
-        serviceCollection.AddSingleton<GlobalState>();
-        serviceCollection.AddSingleton<MainWindow>();
-        serviceCollection.AddLocalization(o => o.ResourcesPath = "Resources\\Localization");
-        _serviceProvider = serviceCollection.BuildServiceProvider();
-        Resources.Add("services", _serviceProvider);
+        _serviceProvider = this.AddDependencyInjection();
+        
         CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
         CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
+        
         AppDomain.CurrentDomain.UnhandledException += (_, error) =>
         {
             MessageBox.Show(error.ExceptionObject.ToString(), caption: "Error");
@@ -61,16 +47,9 @@ public partial class App : Application
         mainWindow.Show();
         
         ISettingService settingService = _serviceProvider.GetService<ISettingService>();
-        string pathIni = Path.Combine(globalState.Path, globalState.DefaultSettingFileName);
-        using Stream fileStream = new FileStream(pathIni, FileMode.Open);
-        using StreamReader reader = new(fileStream);
-        string content = reader.ReadToEnd();
-        reader.Close();
-        reader.Dispose();
-        fileStream.Close();
-        fileStream.Dispose();
+        string iniFilePath = Path.Combine(globalState.Path, globalState.DefaultSettingFileName);
         
-        SettingViewModel setting = settingService.GetSetting(globalState.BwsPath, content);
+        SettingViewModel setting = settingService.GetSetting(globalState.BwsPath, iniFilePath);
         if (setting.Other.ShowAtStart)
         {
             SettingWindow settingWindow = new()

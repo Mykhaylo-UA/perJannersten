@@ -4,8 +4,8 @@ namespace PerJannersten.UiServices.Interfaces;
 
 public interface ISettingService
 {
-    SettingViewModel GetDefaultSetting(string iniString);
-    void SaveDefaultSetting(SettingViewModel settingViewModel, string path);
-    SettingViewModel GetSetting(string filePath, string iniString);
-    void SaveSetting(SettingViewModel settingViewModel, string path);
+    SettingViewModel GetDefaultSetting(string iniFilePath);
+    void SaveDefaultSetting(SettingViewModel setting, string iniFilePath);
+    SettingViewModel GetSetting(string bwsFilePath, string iniFilePath);
+    void SaveSetting(SettingViewModel setting, string bwsFilePath);
 }
