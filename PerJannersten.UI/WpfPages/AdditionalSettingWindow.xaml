@@ -4,9 +4,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:PerJannersten.UI.WpfPages"
+        xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation/blazor"
+        xmlns:pages="clr-namespace:PerJannersten.UI.Pages"
         mc:Ignorable="d"
-        Title="AdditionalSettingWindow" Height="450" Width="800">
+        Title="AdditionalSettingWindow" Height="335" Width="630" MinWidth="625">
     <Grid>
-        
+        <wpf:BlazorWebView x:Name="BlazorWebView" HostPage="wwwroot\index.html" Services="{DynamicResource services}">
+            <wpf:BlazorWebView.RootComponents>
+                <wpf:RootComponent Selector="#app" ComponentType="{x:Type pages:AdditionalSetting}" />
+            </wpf:BlazorWebView.RootComponents>
+        </wpf:BlazorWebView>
     </Grid>
 </Window>

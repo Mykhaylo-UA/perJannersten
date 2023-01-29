@@ -1,12 +1,109 @@
 ﻿@page "/additionalSetting"
-@using PerJannersten.UI.Components;
 @using PerJannersten.UI.Shared
 @layout MainLayout
 
-<MudThemeProvider />
-<MudDialogProvider />
-<MudSnackbarProvider />
+<MudThemeProvider/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+<MudContainer Style="width: 100%;">
+    <div>
+        <MudGrid Spacing="1">
+            <MudItem sm="3" Style="height: 100%;">
+                <MudStack Spacing="0">
+                    <fieldset >
+                        <legend>@(Localizer["scorer"])</legend>
+                        <MudStack Spacing="0">
+                            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["scorer_masters"])"
+                                         @bind-Checked="@_viewModel.Scorer.Masters"/>
+                            <MudRadioGroup T="byte" Class="radioColumn subOption"
+                                           @bind-SelectedOption="_viewModel.Scorer.NEMesters">
+                                <MudRadio Color="DefaultColorSecondary" Size="DefaultSize" Option="@((byte) 1)"
+                                          Disabled="!_viewModel.Scorer.Masters">
+                                    @(Localizer["scorer_ne"])
+                                </MudRadio>
+                                <MudRadio Color="DefaultColorSecondary" Size="DefaultSize" Option="@((byte) 0)"
+                                          Disabled="!_viewModel.Scorer.Masters">
+                                    @(Localizer["scorer_se"])
+                                </MudRadio>
+                            </MudRadioGroup>
+                        </MudStack>
+                    </fieldset>
+                    <fieldset >
+                        <legend>@(Localizer["com"])</legend>
+                        <MudStack Spacing="0">
+                            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["com_required"])"
+                                         @bind-Checked="@_viewModel.COM.Required"/>
+                            <MudNumericField Class="marginTopField smallHeight" Label="@(Localizer["com_untilrd"])" Variant="Variant.Outlined" Margin="Margin.Dense"
+                                             @bind-Value="_viewModel.COM.UntilRd"/>
+                        </MudStack>
+                    </fieldset>
+                    <fieldset >
+                        <legend>@(Localizer["td"])</legend>
+                        <MudStack Spacing="0">
+                            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["td_silent_calls"])"
+                                         @bind-Checked="@_viewModel.TD.SilentCalls"/>
+                            <MudCheckBox Color="DefaultColorSecondary" Size="DefaultSize" Class="subOption"
+                                         @bind-Checked="@_viewModel.TD.Bluetooth"
+                                         Disabled="!_viewModel.TD.SilentCalls">
+                                <MudIcon Style="display: flex;align-items: center; margin-left: -5px;" Icon="@Icons.Material.Filled.BluetoothAudio" Title="Bluetooth"/>
+                            </MudCheckBox>
+                            <MudCheckBox Color="DefaultColorSecondary" Size="DefaultSize" Class="subOption"
+                                         @bind-Checked="@_viewModel.TD.WiFi"
+                                         Disabled="!_viewModel.TD.SilentCalls">
+                                <MudIcon Style="display: flex;align-items: center; margin-left: -5px;" Icon="@Icons.Material.Filled.Wifi" Title="WiFi"/>
+                            </MudCheckBox>
 
-<div>
-    
-</div>
+                        </MudStack>
+                    </fieldset>
+                </MudStack>
+            </MudItem>
+            <MudItem sm="5">
+                <fieldset style="height: 100%;">
+                    <legend>@(Localizer["each_deal"])</legend>
+                    <MudStack Spacing="3">
+                        <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["each_deal_abo"])"
+                                     @bind-Checked="@_viewModel.EachDeal.AscendingBoardOrder"/>
+                        <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["each_deal_scs"])"
+                                     @bind-Checked="@_viewModel.EachDeal.SendContractSeparately"/>
+                        <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["each_deal_ntonp"])"
+                                     @bind-Checked="@_viewModel.EachDeal.NotifyTdOfOnPlay"/>
+                        <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["each_deal_vl"])"
+                                     @bind-Checked="@_viewModel.EachDeal.ValidateLead"/>
+                        <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["each_deal_deap"])"
+                                     @bind-Checked="@_viewModel.EachDeal.DealEntryAfterPlay"/>
+                        <fieldset >
+                            <legend>@(Localizer["each_deal_feedback"])</legend>
+                            <MudStack Spacing="0">
+                                <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["each_deal_feedback_own_result"])"
+                                             @bind-Checked="@_viewModel.Feedback.OwnResult"/>
+                                <MudCheckBox Color="DefaultColor" Size="DefaultSize"
+                                             @bind-Checked="@_viewModel.Feedback.Percentage">
+                                    <MudIcon Style="display: flex;align-items: center; margin-left: -5px;" Icon="@Icons.Material.Filled.Percent" Title="Percent"/>
+                                </MudCheckBox>
+                            </MudStack>
+                        </fieldset>
+                    </MudStack>
+                </fieldset>
+            </MudItem>
+            <MudItem sm="4">
+                <MudStack AlignItems="AlignItems.Center" Style="height: 100%;" Justify="Justify.SpaceBetween">
+                    <fieldset >
+                        <legend>@(Localizer["all_rounds"])</legend>
+                        <MudStack Spacing="0">
+                            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["all_rounds_show_names"])"
+                                         @bind-Checked="@_viewModel.AllRounds.ShowNames"/>
+                            <MudCheckBox Color="DefaultColor" Size="DefaultSize" Label="@(Localizer["all_rounds_required_player_id"])"
+                                         @bind-Checked="@_viewModel.AllRounds.RequiredPlayerId"/>
+                        </MudStack>
+                    </fieldset>
+                        <MudIconButton Style="margin: 0 !important; width: 40px;" Color="Color.Warning" Icon="@Icons.Material.Filled.QuestionMark" Variant="Variant.Filled"
+                                       Size="Size.Large"/>
+                        <MudButton Color="Color.Primary" Size="Size.Large" Variant="Variant.Filled"
+                                   OnClick="SaveSettings">
+                            @(Localizer["save"])
+                        </MudButton>
+                </MudStack>
+            </MudItem>
+        </MudGrid>
+    </div>
+</MudContainer>

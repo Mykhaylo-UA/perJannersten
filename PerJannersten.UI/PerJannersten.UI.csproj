@@ -43,9 +43,16 @@
       <Folder Include="Resources\Localization" />
     </ItemGroup>
     <ItemGroup>
+        <Folder Include="wwwroot" />
+    </ItemGroup>
+    <ItemGroup>
       <EmbeddedResource Update="Resources\Localization\Pages\Setting.en.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Setting.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Localization\Pages\AdditionalSetting.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>AdditionalSetting.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
@@ -53,6 +60,11 @@
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>Setting.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Localization\Pages\AdditionalSetting.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>AdditionalSetting.resx</DependentUpon>
       </Compile>
     </ItemGroup>
 </Project>

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="scorer" xml:space="preserve">
+        <value>Scorer</value>
+    </data>
+    <data name="scorer_masters" xml:space="preserve">
+        <value>Masters</value>
+    </data>
+    <data name="scorer_ne" xml:space="preserve">
+        <value>N &amp; E</value>
+    </data>
+    <data name="scorer_se" xml:space="preserve">
+        <value>S &amp; E</value>
+    </data>
+    <data name="com" xml:space="preserve">
+        <value>COM</value>
+    </data>
+    <data name="com_required" xml:space="preserve">
+        <value>Required</value>
+    </data>
+    <data name="com_untilrd" xml:space="preserve">
+        <value>Until rd</value>
+    </data>
+    <data name="td" xml:space="preserve">
+        <value>TD</value>
+    </data>
+    <data name="td_silent_calls" xml:space="preserve">
+        <value>Silent calls</value>
+    </data>
+    <data name="each_deal" xml:space="preserve">
+        <value>Each deal</value>
+    </data>
+    <data name="each_deal_abo" xml:space="preserve">
+        <value>Ascending board order</value>
+    </data>
+    <data name="each_deal_scs" xml:space="preserve">
+        <value>Send contract separately</value>
+    </data>
+    <data name="each_deal_ntonp" xml:space="preserve">
+        <value>Notify TD of no play</value>
+    </data>
+    <data name="each_deal_vl" xml:space="preserve">
+        <value>Validate lead</value>
+    </data>
+    <data name="each_deal_deap" xml:space="preserve">
+        <value>Deal entry after play</value>
+    </data>
+    <data name="each_deal_feedback_own_result" xml:space="preserve">
+        <value>Own result</value>
+    </data>
+    <data name="all_rounds" xml:space="preserve">
+        <value>Show names</value>
+    </data>
+    <data name="all_rounds_show_names" xml:space="preserve">
+        <value>All rounds</value>
+    </data>
+    <data name="all_rounds_required_player_id" xml:space="preserve">
+        <value>Required player ID</value>
+    </data>
+    <data name="game_settings" xml:space="preserve">
+        <value>Game settings</value>
+    </data>
+    <data name="save" xml:space="preserve">
+        <value>Save</value>
+    </data>
+    <data name="title" xml:space="preserve">
+        <value>Additional Game Setting</value>
+    </data>
+    <data name="title_default" xml:space="preserve">
+        <value>Default Additional Game Setting</value>
+    </data>
+    <data name="each_deal_feedback" xml:space="preserve">
+        <value>Feedback</value>
+    </data>
+</root>

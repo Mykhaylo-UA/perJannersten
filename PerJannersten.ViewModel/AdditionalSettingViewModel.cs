@@ -7,12 +7,29 @@ namespace PerJannersten.ViewModel
 {
     public class AdditionalSettingViewModel : IBws, IIni
     {
-        [IniSection("AdditionalSettings")] public Scorer Scorer { get; set; }
-        [IniSection("AdditionalSettings")] public COM COM { get; set; }
-        [IniSection("AdditionalSettings")] public TD TD { get; set; }
-        [IniSection("AdditionalSettings")] public EachDeal EachDeal { get; set; }
-        [IniSection("AdditionalSettings")] public Feedback Feedback { get; set; }
-        [IniSection("AdditionalSettings")] public AllRounds AllRounds { get; set; }
+        [IniSection("AdditionalSettings")]
+        [BwsTable("SETTINGS")]
+        public Scorer Scorer { get; set; } = new();
+
+        [IniSection("AdditionalSettings")]
+        [BwsTable("SETTINGS")]
+        public COM COM { get; set; } = new();
+
+        [IniSection("AdditionalSettings")]
+        [BwsTable("SETTINGS")]
+        public TD TD { get; set; } = new();
+
+        [IniSection("AdditionalSettings")]
+        [BwsTable("SETTINGS")]
+        public EachDeal EachDeal { get; set; } = new();
+
+        [IniSection("AdditionalSettings")]
+        [BwsTable("SETTINGS")]
+        public Feedback Feedback { get; set; } = new();
+
+        [IniSection("AdditionalSettings")]
+        [BwsTable("SETTINGS")]
+        public AllRounds AllRounds { get; set; } = new();
 
         public Dictionary<string, List<string>> GetUpdateSqlString()
         {
@@ -81,41 +98,78 @@ namespace PerJannersten.ViewModel.AdditionalSetting
 {
     public class Scorer
     {
-        [IniField("Master")] public bool Masters { get; set; }
-        [IniField("NEMasters")] public byte NEMesters { get; set; }
+        [IniField("Master")] 
+        [BwsColumn("Master")] 
+        public bool Masters { get; set; }
+
+        [IniField("NEMasters")]
+        [BwsColumn("NEMasters")]
+        public byte NEMesters { get; set; }
     }
 
     public class COM
     {
-        [IniField("COM")] public bool Required { get; set; }
-        [IniField("UntilRd")] public string UntilRd { get; set; }
+        [IniField("COM")] [BwsColumn("COM")] public bool Required { get; set; }
+        [IniField("UntilRd")] [BwsColumn("UntilRd")] public string UntilRd { get; set; }
     }
 
     public class TD
     {
-        [IniField("BM2TDCall")] public bool SilentCalls { get; set; }
-        [IniField("Bluetooth")] public bool Bluetooth { get; set; }
-        [IniField("WiFi")] public bool WiFi { get; set; }
+        [IniField("BM2TDCall")]
+        [BwsColumn("BM2TDCall")]
+        public bool SilentCalls { get; set; }
+
+        [IniField("Bluetooth")]
+        [BwsColumn("Bluetooth")]
+        public bool Bluetooth { get; set; }
+
+        [IniField("WiFi")] 
+        [BwsColumn("WiFi")] 
+        public bool WiFi { get; set; }
     }
 
     public class EachDeal
     {
-        [IniField("BoardOrderVerification")] public bool AscendingBoardOrder { get; set; }
-        [IniField("IntermediateResults")] public bool SendContractSeparately { get; set; }
-        [IniField("BM2ConfirmNP")] public bool NotifyTdOfOnPlay { get; set; }
-        [IniField("BM2ValidateLeadCard")] public bool ValidateLead { get; set; }
-        [IniField("BM2EnterHandRecordsWhen")] public bool DealEntryAfterPlay { get; set; }
+        [IniField("BoardOrderVerification")]
+        [BwsColumn("BoardOrderVerification")]
+        public bool AscendingBoardOrder { get; set; }
+
+        [IniField("IntermediateResults")]
+        [BwsColumn("IntermediateResults")]
+        public bool SendContractSeparately { get; set; }
+
+        [IniField("BM2ConfirmNP")]
+        [BwsColumn("BM2ConfirmNP")]
+        public bool NotifyTdOfOnPlay { get; set; }
+
+        [IniField("BM2ValidateLeadCard")]
+        [BwsColumn("BM2ValidateLeadCard")]
+        public bool ValidateLead { get; set; }
+
+        [IniField("BM2EnterHandRecordsWhen")]
+        [BwsColumn("BM2EnterHandRecordsWhen")]
+        public bool DealEntryAfterPlay { get; set; }
     }
 
     public class Feedback
     {
-        [IniField("ShowOwnResult")] public bool OwnResult { get; set; }
-        [IniField("ShowPercentage")] public bool Percentage { get; set; }
+        [IniField("ShowOwnResult")]
+        [BwsColumn("ShowOwnResult")]
+        public bool OwnResult { get; set; }
+
+        [IniField("ShowPercentage")]
+        [BwsColumn("ShowPercentage")]
+        public bool Percentage { get; set; }
     }
 
     public class AllRounds
     {
-        [IniField("BM2ShowPlayerNames")] public bool ShowNames { get; set; }
-        [IniField("BM2NumberEntryEachRound")] public bool RequiredPlayerId { get; set; }
+        [IniField("BM2ShowPlayerNames")]
+        [BwsColumn("BM2ShowPlayerNames")]
+        public bool ShowNames { get; set; }
+
+        [IniField("BM2NumberEntryEachRound")]
+        [BwsColumn("BM2NumberEntryEachRound")]
+        public bool RequiredPlayerId { get; set; }
     }
 }

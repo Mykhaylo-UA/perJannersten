@@ -9,6 +9,7 @@ fieldset{
     border: 1px solid rgba(0, 0, 0, 0.35);
     border-radius: 10px;
     padding: 5px 10px;
+    width: 100%;
 }
 fieldset legend{
     margin-left: 10px;

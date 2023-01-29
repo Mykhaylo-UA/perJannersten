@@ -3,10 +3,10 @@
 @using PerJannersten.UI.Shared
 @layout MainLayout
 
-<MudThemeProvider />
-<MudDialogProvider />
-<MudSnackbarProvider />
-
+<MudThemeProvider/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+<MudContainer Style="width: 100%;">
 <div>
 <MudGrid Spacing="1">
 <MudItem sm="3" Style="height: 100%;">
@@ -29,14 +29,14 @@
         </MudStack>
     </fieldset>
 </MudItem>
-<MudItem sm="6" Style="height: 100%;">
-    <fieldset >
+<MudItem sm="6">
+    <fieldset style="height: 100%;">
         <legend>@(Localizer["game_scoring_type"])</legend>
         <MudGrid>
             <MudItem sm="6">
                 <fieldset>
                     <MudRadioGroup T="byte" Class="radioColumn"
-                                   SelectedOption="@(_settingViewModel.GameAndScoringType.ScoringType != 4 ? _settingViewModel.GameAndScoringType.GameType : (byte)0)"
+                                   SelectedOption="@(_settingViewModel.GameAndScoringType.ScoringType != 4 ? _settingViewModel.GameAndScoringType.GameType : (byte) 0)"
                                    SelectedOptionChanged="ChangeGameType">
                         <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@((byte) 1)">@(Localizer["game_scoring_type_pairs"])</MudRadio>
                         <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@((byte) 2)">@(Localizer["game_scoring_type_individual"])</MudRadio>
@@ -71,18 +71,17 @@
                 </fieldset>
             </MudItem>
         </MudGrid>
-        <div style="display: flex; justify-content: center; margin: 12px 0;">
+        <div style="display: flex; justify-content: center; margin-top:20px;">
             <MudCheckBox Color="DefaultColor" Size="DefaultSize"
                          @bind-Checked="@_settingViewModel.GameAndScoringType.ScoreAcrossPair"
-                         T="bool" Label="@(Localizer["score_across_the_field"])"
-                         Style=""/>
+                         T="bool" Label="@(Localizer["score_across_the_field"])"/>
         </div>
     </fieldset>
 </MudItem>
-<MudItem sm="3" Style="height: 100%;">
-    <fieldset >
+<MudItem sm="3" >
+    <fieldset style="height: 100%;">
         <legend>@(Localizer["tricks_points"])</legend>
-        <MudStack Spacing="0">
+        <MudStack Spacing="2">
             <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="@(Localizer["tricks_points_n_scores"])"
                          @bind-Checked="_settingViewModel.TrickAndPoint.RotateDirections"/>
             <MudRadioGroup T="byte"
@@ -103,8 +102,8 @@
         </MudStack>
     </fieldset>
 </MudItem>
-<MudItem sm="3" Style="height: 100%;">
-    <MudGrid Spacing="0">
+<MudItem sm="3">
+    <MudGrid Spacing="0" Style="height: 100%;">
         <MudItem sm="12">
             <fieldset >
                 <legend>@(Localizer["timing"])</legend>
@@ -152,8 +151,8 @@
     </MudGrid>
 
 </MudItem>
-<MudItem sm="6" Style="height: 100%;">
-    <fieldset >
+<MudItem sm="6">
+    <fieldset style="height: 100%;">
         <legend>@(Localizer["feedback"])</legend>
         <MudGrid>
             <MudItem sm="6">
@@ -238,8 +237,8 @@
         </MudGrid>
     </fieldset>
 </MudItem>
-<MudItem sm="3" Style="height: 100%;">
-    <MudGrid Style="margin-top: 10px;">
+<MudItem sm="3">
+    <MudGrid Style="margin-top: 10px; height: 100%;">
         <MudItem sm="12">
             <MudCheckBox Color="DefaultColor" Size="DefaultSize" T="bool" Label="@(Localizer["show_at_start"])"
                          @bind-Checked="_settingViewModel.Other.ShowAtStart"/>
@@ -255,7 +254,7 @@
                         <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@(false)">@(Localizer["settings_from_scoring"])</MudRadio>
                         <MudRadio Color="DefaultColor" Size="DefaultSize" Option="@(true)">@(Localizer["settings_from_default"])</MudRadio>
                     </MudRadioGroup>
-                </fieldset>   
+                </fieldset>
             }
             else
             {
@@ -266,7 +265,7 @@
             }
         </MudItem>
         <MudItem sm="12" Class="centerContent">
-            <MudIconButton Color="Color.Warning" Icon="@Icons.Material.Filled.QuestionMark" Variant="Variant.Filled"
+            <MudIconButton Style="margin: 0 !important; width: 40px;" Color="Color.Warning" Icon="@Icons.Material.Filled.QuestionMark" Variant="Variant.Filled"
                            Size="Size.Large"/>
         </MudItem>
         <MudItem sm="12" Class="centerContent">
@@ -279,3 +278,4 @@
 </MudItem>
 </MudGrid>
 </div>
+</MudContainer>

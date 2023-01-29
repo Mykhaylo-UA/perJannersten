@@ -47,7 +47,7 @@ public partial class MainWindow : Window
         {
             DefaultSetting = defaultSetting,
             Owner = this,
-            SettingViewModel = defaultSetting
+            AdditionalSettingViewModel = defaultSetting
                 ? _additionalSettingService.GetDefaultAdditionalSetting(path)
                 : _additionalSettingService.GetAdditionalSetting(_globalState.BwsPath, path)
         };
