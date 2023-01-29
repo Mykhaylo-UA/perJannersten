@@ -16,6 +16,7 @@ namespace PerJannersten.UI.Pages;
 public partial class Setting : ComponentBase
 {
     [Inject] ISettingService SettingService { get; set; }
+    [Inject] IAdditionalSettingService AdditionalSettingService { get; set; }
     [Inject] ISnackbar Snackbar { get; set; }
     [Inject] GlobalState GlobalState { get; set; }
     SettingWindow SettingWindow { get; set; }
@@ -25,8 +26,7 @@ public partial class Setting : ComponentBase
     const Size DefaultSize = Size.Small;
     const Color DefaultColor = Color.Primary;
     const Color DefaultColorSecondary = Color.Secondary;
-    
-    string _path;
+
     bool _btDefault;
 
     protected override async Task OnInitializedAsync()
@@ -35,8 +35,7 @@ public partial class Setting : ComponentBase
         _settingViewModel = SettingWindow.SettingViewModel;
         _btDefault = _settingViewModel.Other.BTDefault;
         SettingWindow.Title = SettingWindow.DefaultSetting ? Localizer["title_default"] : Localizer["title"];
-        
-        _path = Path.Combine(GlobalState.Path, GlobalState.DefaultSettingFileName);
+
 
         try
         {
@@ -55,12 +54,13 @@ public partial class Setting : ComponentBase
     {
         if (SettingWindow.DefaultSetting)
         {
-            SettingService.SaveDefaultSetting(_settingViewModel, _path);
+            SettingService.SaveDefaultSetting(_settingViewModel, GlobalState.DefaultFullPath);
         }
         else
         {
             SettingService.SaveSetting(_settingViewModel, GlobalState.BwsPath);
         }
+
         Snackbar.Add("Data is saved", Severity.Success);
     }
 
@@ -80,6 +80,13 @@ public partial class Setting : ComponentBase
 
     void MoreSettings()
     {
-        MessageBox.Show("Progress");
+        SaveSettings();
+        AdditionalSettingWindow window = new()
+        {
+            DefaultSetting = false,
+            AdditionalSettingViewModel =
+                AdditionalSettingService.GetAdditionalSetting(GlobalState.BwsPath, GlobalState.DefaultFullPath)
+        };
+        window.Show();
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Windows;
+﻿using System.Windows;
 using PerJannersten.UiServices.Interfaces;
 
 namespace PerJannersten.UI.WpfPages;
@@ -24,14 +23,13 @@ public partial class MainWindow : Window
 
     void OpenSetting(bool defaultSetting)
     {
-        string path = Path.Combine(_globalState.Path, _globalState.DefaultSettingFileName);
         SettingWindow window = new()
         {
             DefaultSetting = defaultSetting,
             Owner = this,
             SettingViewModel = defaultSetting
-                ? _settingService.GetDefaultSetting(path)
-                : _settingService.GetSetting(_globalState.BwsPath, path)
+                ? _settingService.GetDefaultSetting(_globalState.DefaultFullPath)
+                : _settingService.GetSetting(_globalState.BwsPath, _globalState.DefaultFullPath)
         };
         window.ShowDialog();
     }
@@ -42,14 +40,13 @@ public partial class MainWindow : Window
 
     void OpenAdditionalSetting(bool defaultSetting)
     {
-        string path = Path.Combine(_globalState.Path, _globalState.DefaultSettingFileName);
         AdditionalSettingWindow window = new()
         {
             DefaultSetting = defaultSetting,
             Owner = this,
             AdditionalSettingViewModel = defaultSetting
-                ? _additionalSettingService.GetDefaultAdditionalSetting(path)
-                : _additionalSettingService.GetAdditionalSetting(_globalState.BwsPath, path)
+                ? _additionalSettingService.GetDefaultAdditionalSetting(_globalState.DefaultFullPath)
+                : _additionalSettingService.GetAdditionalSetting(_globalState.BwsPath, _globalState.DefaultFullPath)
         };
         window.ShowDialog();
     }

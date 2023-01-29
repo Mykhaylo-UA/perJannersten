@@ -47,9 +47,8 @@ public partial class App : Application
         mainWindow.Show();
         
         ISettingService settingService = _serviceProvider.GetService<ISettingService>();
-        string iniFilePath = Path.Combine(globalState.Path, globalState.DefaultSettingFileName);
         
-        SettingViewModel setting = settingService.GetSetting(globalState.BwsPath, iniFilePath);
+        SettingViewModel setting = settingService.GetSetting(globalState.BwsPath, globalState.DefaultFullPath);
         if (setting.Other.ShowAtStart)
         {
             SettingWindow settingWindow = new()

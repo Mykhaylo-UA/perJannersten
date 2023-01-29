@@ -10,6 +10,8 @@ public class GlobalState
     public string RegistryKeyPath { get; set; } = @"Software\Jannersten Forlag AB\BOS\Settings";
     public string KeyName { get; set; } = "BOS_path";
     public string BwsPath { get; set; } = @"C:\\BOS\\Events\\BWS_test\\DATA\\bws_test.bws";
+    public string DefaultFullPath => System.IO.Path.Combine(Path, DefaultSettingFileName);
+
     public string Path
     {
         get

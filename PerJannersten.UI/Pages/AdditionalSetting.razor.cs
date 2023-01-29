@@ -26,21 +26,18 @@ public partial class AdditionalSetting : ComponentBase
     const Color DefaultColor = Color.Primary;
     const Color DefaultColorSecondary = Color.Secondary;
     
-    string _path;
-
     protected override async Task OnInitializedAsync()
     {
         AdditionalSettingWindow = Application.Current.Windows.OfType<AdditionalSettingWindow>().Last();
         _viewModel = AdditionalSettingWindow.AdditionalSettingViewModel;
         AdditionalSettingWindow.Title = AdditionalSettingWindow.DefaultSetting ? Localizer["title_default"] : Localizer["title"];
-        _path = Path.Combine(GlobalState.Path, GlobalState.DefaultSettingFileName);
     }
 
     void SaveSettings()
     {
         if (AdditionalSettingWindow.DefaultSetting)
         {
-            AdditionalSettingService.SaveDefaultAdditionalSetting(_viewModel, _path);
+            AdditionalSettingService.SaveDefaultAdditionalSetting(_viewModel, GlobalState.DefaultFullPath);
         }
         else
         {
@@ -52,11 +49,10 @@ public partial class AdditionalSetting : ComponentBase
     void OpenSettingWindow()
     {
         SaveSettings();
-        string path = Path.Combine(GlobalState.Path, GlobalState.DefaultSettingFileName);
         SettingWindow window = new()
         {
             DefaultSetting = false,
-            SettingViewModel = SettingService.GetSetting(GlobalState.BwsPath, path)
+            SettingViewModel = SettingService.GetSetting(GlobalState.BwsPath, GlobalState.DefaultFullPath)
         };
         window.Show();
     }
