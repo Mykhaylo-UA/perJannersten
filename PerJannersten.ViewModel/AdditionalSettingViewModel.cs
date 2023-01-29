@@ -76,7 +76,11 @@ namespace PerJannersten.ViewModel
                 object propertyValue = property.GetValue(this);
                 IniSectionAttribute iniSectionAttribute =
                     propertyValue.GetType().GetCustomAttribute<IniSectionAttribute>();
-                if (iniSectionAttribute is null) continue;
+                if (iniSectionAttribute is null)
+                {
+                    iniSectionAttribute = property.GetCustomAttribute<IniSectionAttribute>();
+                    if(iniSectionAttribute is null) continue;
+                };
                 string section = iniSectionAttribute.Name;
                 IEnumerable<PropertyInfo> propertyFields = propertyValue.GetType().GetProperties();
                 foreach (PropertyInfo propertyField in propertyFields)
