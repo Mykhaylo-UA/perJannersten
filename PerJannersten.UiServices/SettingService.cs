@@ -45,6 +45,6 @@ public class SettingService : ISettingService
 
     public void SaveDefaultSetting(SettingViewModel settingViewModel, string iniFilePath)
     {
-        _iniService.Save(settingViewModel, iniFilePath);
+        _iniService.Save(iniFilePath, settingViewModel, _iniService.Parse<AdditionalSettingViewModel>(iniFilePath));
     }
 }

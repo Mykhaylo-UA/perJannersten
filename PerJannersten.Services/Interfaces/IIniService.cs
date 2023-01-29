@@ -8,5 +8,5 @@ public interface IIniService
     string Read(string section, string key, string iniString);
     void Write(IniData iniData, string path);
     T Parse<T>(string iniFilePath) where T : new();
-    void Save(IIni iniViewModel, string path);
+    void Save(string path, params IIni[] iniViewModels);
 }

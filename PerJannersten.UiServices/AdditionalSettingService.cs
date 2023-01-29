@@ -23,7 +23,7 @@ public class AdditionalSettingService : IAdditionalSettingService
 
     public void SaveDefaultAdditionalSetting(AdditionalSettingViewModel additionalSetting, string path)
     {
-        _iniService.Save(additionalSetting, path);
+        _iniService.Save(path, additionalSetting, _iniService.Parse<SettingViewModel>(path));
     }
 
     public AdditionalSettingViewModel GetAdditionalSetting(string bwsFilePath, string iniFilePath)

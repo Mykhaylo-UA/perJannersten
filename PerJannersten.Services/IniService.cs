@@ -30,7 +30,7 @@ public class IniService : IIniService
         result = data.Global.FirstOrDefault(p => p.KeyName == key);
         return result?.Value;
     }
-    
+
     public T Parse<T>(string iniFilePath) where T : new()
     {
         using Stream fileStream = new FileStream(iniFilePath, FileMode.Open);
@@ -40,14 +40,14 @@ public class IniService : IIniService
         reader.Dispose();
         fileStream.Close();
         fileStream.Dispose();
-        
+
         T obj = new();
         Type objectType = obj.GetType();
         IniSectionAttribute mainIniSectionAttribute = objectType.GetCustomAttribute<IniSectionAttribute>();
         if (mainIniSectionAttribute is not null)
         {
             string section = mainIniSectionAttribute.Name;
-            return (T)GetIniField(obj, section);
+            return (T) GetIniField(obj, section);
         }
 
         IEnumerable<PropertyInfo> properties = objectType.GetProperties();
@@ -89,20 +89,27 @@ public class IniService : IIniService
         }
     }
 
-    public void Save(IIni iniViewModel, string path)
+    public void Save(string path, params IIni[] iniViewModels)
     {
-        string BoolToString(bool value) => value ? "1" : "0";
-        Dictionary<(string, string), object> fieldsWithValue = iniViewModel.GetIniDictionary();
+        List<Dictionary<(string, string), object>> fields =
+            iniViewModels.Select(iniViewModel => iniViewModel.GetIniDictionary()).ToList();
         IniData iniData = new();
-        foreach (KeyValuePair<(string, string),object> o in fieldsWithValue)
+        foreach (Dictionary<(string, string),object> dictionary in fields)
         {
-            if (o.Value is bool value)
+            foreach (KeyValuePair<(string, string), object> o in dictionary)
             {
-                iniData[o.Key.Item1][o.Key.Item2] = $"{BoolToString(value)}";
-                continue;
+                if (o.Value is bool value)
+                {
+                    iniData[o.Key.Item1][o.Key.Item2] = $"{BoolToString(value)}";
+                    continue;
+                }
+
+                iniData[o.Key.Item1][o.Key.Item2] = $"{o.Value}";
             }
-            iniData[o.Key.Item1][o.Key.Item2] = $"{o.Value}";
         }
+
         Write(iniData, path);
+
+        string BoolToString(bool value) => value ? "1" : "0";
     }
 }
