@@ -1,0 +1,22 @@
+﻿@using PerJannersten.UI.WpfPages
+@using System.IO
+<MudIconButton Style="margin: 0 !important; width: 40px; height: 40px;"
+               Color="Color.Warning"
+               Icon="@Icons.Material.Filled.QuestionMark"
+               Variant="Variant.Filled"
+               Size="Size.Large"
+               OnClick="OpenHelpWindow"/>
+
+@code{
+
+    [Parameter]
+    public string PathFile { get; set; }
+
+    void OpenHelpWindow()
+    {
+        HelpWindow helpWindow = new();
+        helpWindow.WebBrowser.Navigate(Path.Combine(@"C:\BOS\BTC\Help\html", PathFile + ".html"));
+        helpWindow.Show();
+    }
+
+}
