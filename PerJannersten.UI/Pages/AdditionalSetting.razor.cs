@@ -15,6 +15,7 @@ namespace PerJannersten.UI.Pages;
 public partial class AdditionalSetting : ComponentBase
 {
     [Inject] IAdditionalSettingService AdditionalSettingService { get; set; }
+    [Inject] ISettingService SettingService { get; set; }
     [Inject] ISnackbar Snackbar { get; set; }
     [Inject] GlobalState GlobalState { get; set; }
     AdditionalSettingWindow AdditionalSettingWindow { get; set; }
@@ -46,5 +47,17 @@ public partial class AdditionalSetting : ComponentBase
             AdditionalSettingService.SaveAdditionalSetting(_viewModel, GlobalState.BwsPath);
         }
         Snackbar.Add("Data is saved", Severity.Success);
+    }
+
+    void OpenSettingWindow()
+    {
+        SaveSettings();
+        string path = Path.Combine(GlobalState.Path, GlobalState.DefaultSettingFileName);
+        SettingWindow window = new()
+        {
+            DefaultSetting = false,
+            SettingViewModel = SettingService.GetSetting(GlobalState.BwsPath, path)
+        };
+        window.Show();
     }
 }

@@ -96,12 +96,19 @@
                                          @bind-Checked="@_viewModel.AllRounds.RequiredPlayerId"/>
                         </MudStack>
                     </fieldset>
-                        <MudIconButton Style="margin: 0 !important; width: 40px; height: 40px;" Color="Color.Warning" Icon="@Icons.Material.Filled.QuestionMark" Variant="Variant.Filled"
-                                       Size="Size.Large"/>
-                        <MudButton Color="Color.Primary" Size="Size.Large" Variant="Variant.Filled"
-                                   OnClick="SaveSettings">
-                            @(Localizer["save"])
+                    @if (!AdditionalSettingWindow.DefaultSetting)
+                    {
+                        <MudButton Color="Color.Secondary" Size="Size.Large" Variant="Variant.Filled"
+                                   OnClick="OpenSettingWindow">
+                            @(Localizer["game_settings"])
                         </MudButton>
+                    }
+                    <MudIconButton Style="margin: 0 !important; width: 40px; height: 40px;" Color="Color.Warning" Icon="@Icons.Material.Filled.QuestionMark" Variant="Variant.Filled"
+                                   Size="Size.Large"/>
+                    <MudButton Color="Color.Primary" Size="Size.Large" Variant="Variant.Filled"
+                               OnClick="SaveSettings">
+                        @(Localizer["save"])
+                    </MudButton>
                 </MudStack>
             </MudItem>
         </MudGrid>
